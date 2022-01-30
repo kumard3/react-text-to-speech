@@ -1,7 +1,5 @@
 import { useState } from "react";
-
-
-
+import { textarea, button } from "../styles/style";
 
 function WebApi() {
   const [value, setValue] = useState("");
@@ -16,19 +14,17 @@ function WebApi() {
   return (
     <div className="flex flex-col justify-center  items-center">
       <div className="max-w-[36rem]">
-
-      <textarea
-        className="bg-gray-500 text-white rounded-3xl sm:w-[30rem] min-h-[20rem] "
-        value={value}
-        onChange={(event) => setValue(event.target.value)}
+        <textarea
+          className={`${textarea} `}
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
         />
-        </div>
-        <div>
-
-      <button onClick={speak} className="text-white rounded-xl bg-gray-500 px-5 py-3 text-xl  ">
-        Press
-      </button>
-        </div>
+      </div>
+      <div>
+        <button onClick={speak} className={`${button} `}>
+          Press
+        </button>
+      </div>
     </div>
   );
 }
