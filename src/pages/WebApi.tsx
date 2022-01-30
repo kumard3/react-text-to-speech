@@ -1,29 +1,34 @@
 import { useState } from "react";
 
-export const HomePage = () => {
-  return <h1>hello </h1>;
-};
+
+
 
 function WebApi() {
-  const [state, setState] = useState("Hello World");
+  const [value, setValue] = useState("");
   var msg = new SpeechSynthesisUtterance();
-  msg.text = "Hello World";
+
+  msg.text = value;
 
   function speak() {
-    setState(state + 1);
     window.speechSynthesis.speak(msg);
   }
-  console.log(window.speechSynthesis.speaking);
-console.log(window.speechSynthesis.removeEventListener)
-  // window.speechSynthesis.speak(msg);
 
   return (
-    <div className="">
+    <div className="flex flex-col justify-center  items-center">
+      <div className="max-w-[36rem]">
 
-      <button onClick={speak} className="text-white  bg-gray-500 p-4">
+      <textarea
+        className="bg-gray-500 text-white rounded-3xl sm:w-[30rem] min-h-[20rem] "
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+        />
+        </div>
+        <div>
+
+      <button onClick={speak} className="text-white rounded-xl bg-gray-500 px-5 py-3 text-xl  ">
         Press
       </button>
-     
+        </div>
     </div>
   );
 }
