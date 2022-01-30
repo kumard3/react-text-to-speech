@@ -1,6 +1,7 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 
 export default function WebApi() {
+
   const [value, setValue] = useState(
     "Hey there! Cyphen, a community  with great passion and zest in building a healthy environment To learn •Open Source•Web Development•Data structures and Algorithms•Projects•Competitive Coding•ProgrammingMotivational talks, Opportunities, and much much more!Suggestions are always welcomed."
   );
@@ -10,8 +11,9 @@ export default function WebApi() {
   const [isResumed, setIsResumed] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
 
-  const speak = useCallback(() => {
-    var msg = new window.SpeechSynthesisUtterance();
+
+  const createGraphics = useCallback(() => {
+    var msg = new SpeechSynthesisUtterance();
 
     msg.text = value;
     function speak() {
@@ -20,7 +22,7 @@ export default function WebApi() {
     speak();
     setIsSpeaking(true);
     setIsEnded(false);
-  }, []);
+  }, [value]);
 
   const Pause = useCallback(() => {
     function pause() {
@@ -70,7 +72,9 @@ export default function WebApi() {
         />
       </div>
       <div className="w-full flex justify-center items-center">
-        <button onClick={speak} className={`${button} mx-3 `}>
+   
+
+        <button onClick={createGraphics} className={`${button} mx-3 `}>
           Speak
         </button>
         {isSpeaking ? "Speaking" : ""}
