@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
-import  {Link}  from "react-router-dom";
+import { Link } from "react-router-dom";
 import useOnClickOutside from "./useOnClickOutside";
-
-
+import {Navbutton} from '../styles/style'
 const navData = [
   {
     name: "WithPackage",
@@ -33,7 +32,7 @@ export default function NavComponent() {
               <Link href="#hero">home</Link>
             </li> */}
               <Link to="/">
-                <h1>LOGO</h1>
+                <h1 className={`${Navbutton}`}>React speech</h1>
                 {/* <span className="text-4xl font-bold">logo</span> */}
               </Link>
             </div>
@@ -49,7 +48,7 @@ export default function NavComponent() {
                         <div className="-mr-2 float-right mb-3">
                           <button
                             onClick={() => setModalOpen(!true)}
-                            className="bg-white rounded-md p-2 inline-flex items-center justify-center  hover:text-gray-500 hover:bg-gray-100 "
+                            className=" rounded-md p-2 inline-flex items-center justify-center "
                           >
                             <span className="sr-only">Close menu</span>
                             <svg
@@ -73,15 +72,15 @@ export default function NavComponent() {
                         <div className="mt-[5rem] z-10 relative">
                           <nav className="grid gap-y-8">
                             {navData.map((item) => (
-                              <a
+                              <Link
                                 key={item.name}
-                                href={item.href}
-                                className="-m-3 p-3 flex items-center rounded-md hover:bg-black  border-[1px] border-red-500/60"
+                                to={item.href}
+                                className={`${Navbutton}  rounded-md`}
                               >
                                 <h1 className="my-3 ml-3 text-3xl font-bold ">
                                   {item.name}
                                 </h1>
-                              </a>
+                              </Link>
                             ))}
                           </nav>
                         </div>
@@ -116,7 +115,7 @@ export default function NavComponent() {
             <nav className="hidden sm:flex space-x-10 items-center">
               {navData.map((n) => {
                 return (
-                  <Link key={n.name} to={n.href}>
+                  <Link key={n.name} to={n.href} className={`${Navbutton}`} >
                     {n.name}
                   </Link>
                 );

@@ -9,6 +9,7 @@ export default function Speech() {
 
   return (
     <div className={`${layout}`}>
+      <h1 className="text-xl">package used <a href="https://www.npmjs.com/package/react-speech-kit">@react-speech-kit</a></h1>
       <div>
         <textarea
           className={`${textarea} `}
