@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { textarea, button } from "../styles/style";
+import { textarea, button,layout } from "../styles/style";
 
 function WebApi() {
   const [value, setValue] = useState("");
@@ -12,7 +12,7 @@ function WebApi() {
   }
 
   return (
-    <div className="flex flex-col justify-center  items-center">
+    <div className={`${layout}`}>
       <div className="max-w-[36rem]">
         <textarea
           className={`${textarea} `}
