@@ -23,7 +23,7 @@ export default function NavComponent() {
   useOnClickOutside(ref, () => setModalOpen(false));
 
   return (
-    <div className="sticky top-0 z-10 backdrop-blur-sm  text-xl font-bold drop-shadow-xl flex-none transition-colors duration-500  ">
+    <div className="relative z-10 backdrop-blur-sm  text-xl font-bold drop-shadow-xl flex-none transition-colors duration-500  ">
       <div className="w-full container mx-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 ">
           <div className="flex justify-between items-center   py-6 sm:justify-between sm:space-x-10">
