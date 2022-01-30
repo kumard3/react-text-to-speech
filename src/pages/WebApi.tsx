@@ -5,6 +5,12 @@ export default function WebApi() {
   const [value, setValue] = useState(
     "Hey there! Cyphen, a community  with great passion and zest in building a healthy environment To learn •Open Source•Web Development•Data structures and Algorithms•Projects•Competitive Coding•ProgrammingMotivational talks, Opportunities, and much much more!Suggestions are always welcomed."
   );
+  const [speekvalue, setSpeekValue] = useState("");
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [isCanceled, setIsCanceled] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isResumed, setIsResumed] = useState(false);
+  const [isEnded, setIsEnded] = useState(false);
   var msg = new SpeechSynthesisUtterance();
 
   msg.text = value;
@@ -14,26 +20,52 @@ export default function WebApi() {
       window.speechSynthesis.speak(msg);
     }
     speak();
-  }, [value]);
+    setIsSpeaking(true);
+    setIsEnded(false)
+   
+  }, [msg]);
 
-  function pause() {
-    window.speechSynthesis.pause();
-  }
-  function resume() {
-    window.speechSynthesis.resume();
-  }
-
-  function cancel() {
-    window.speechSynthesis.cancel();
-  }
-  useEffect(() => {
-    createGraphics();
+  const Pause = useCallback(() => {
+    function pause() {
+      window.speechSynthesis.pause();
+    }
     pause();
+    setIsPaused(true);
+    setIsSpeaking(false);
+    setIsEnded(false)
+    setIsResumed(false)
+   
+  }, []); 
+  
+  const Resume = useCallback(() => {
+    function resume() {
+      window.speechSynthesis.resume();
+    }
+    resume();
+    setIsPaused(false);
+    setIsSpeaking(false);
+    setIsEnded(false)
+    setIsResumed(true)
+   
+  }, []); 
+  
+  const Cancel = useCallback(() => {
+    function cancel() {
+      window.speechSynthesis.cancel();
+    }
     cancel();
+    setIsPaused(false);
+    setIsResumed(false)
+
+    setIsSpeaking(false);
+    setIsEnded(true)
   }, []);
-  // const paused = window.speechSynthesis.paused
-  // const pending = window.speechSynthesis.pending
-  // console.log(paused);
+
+  
+
+
+ 
+
   return (
     <div className={`${layout}`}>
       <div className="max-w-[36rem]">
@@ -43,24 +75,29 @@ export default function WebApi() {
           onChange={(event) => setValue(event.target.value)}
         />
       </div>
-      <div className="flex justify-evenly w-full">
-       {/* {paused || pending === !true ? "Resume" : "Paused"} */}
-       
+      <div className="w-full flex justify-center items-center">
+        {/* {paused || pending === !true ? "Resume" : "Paused"} */}
+
         {/* { window.speechSynthesis.paused === false ? `paused: true
 pending: false
 speaking: false` : ``} */}
-        <button onClick={createGraphics} className={`${button} `}>
-          Press
+
+        <button onClick={createGraphics} className={`${button} mx-3 `}>
+          Speak
         </button>
-        <button onClick={pause} className={`${button} `}>
+{isSpeaking ? "Speaking" : ""}
+        <button onClick={Pause} className={`${button} mx-3 `}>
           pause
         </button>
-        <button onClick={resume} className={`${button} `}>
+        {isPaused ? "Paused" : ""}
+        <button onClick={Resume} className={`${button} mx-3 `}>
           resume
         </button>
-        <button onClick={cancel} className={`${button} `}>
+        {isResumed ? "Resumed" : ""}
+        <button onClick={Cancel} className={`${button} mx-3 active:  `}>
           cancel
         </button>
+        {isCanceled ? "Canceled" : ""}
       </div>
     </div>
   );
